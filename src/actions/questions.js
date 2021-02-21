@@ -19,8 +19,10 @@ function addQuestion(question) {
 }
 
 export function handleAddQuestion (question) {
-    return saveQuestion(question)
-    .then((question) => addQuestion(question))
+    return dispatch => {
+        dispatch(saveQuestion(question))
+        .then((question) => dispatch(addQuestion(question)))
+    }
 }
 
 function answerQuestion(info){
@@ -31,7 +33,9 @@ function answerQuestion(info){
 }
 
 export function handleAnswerQuestion(info) {
-    return saveQuestionAnswer(info)
-    .then((result) => answerQuestion(result))
+    return dispatch => {
+        dispatch(saveQuestionAnswer(info))
+        .then((result) => dispatch(answerQuestion(result)))
+    }
 }
 
