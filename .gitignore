@@ -18,6 +18,8 @@
 .env.test.local
 .env.production.local
 
+/react-project-would-you-rather-starter/*
+
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
