@@ -12,7 +12,7 @@ function login (authedUser) {
     }
 }
 
-export function handleLogin (id) {
+export function handleLogin(id) {
     return dispatch => {
         dispatch(setAuthedUser(id))
         .then((authedUser) => {
