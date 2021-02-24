@@ -22,26 +22,29 @@ function addQuestion(question) {
 export function handleAddQuestion (question) {
     return (dispatch) => {       
         
+        dispatch(showLoading())
         return saveQuestion(question)
         .then((question) => dispatch(addQuestion(question)))
+        .then(() => dispatch(hideLoading()))
     }
 }
 
-function answerQuestion(info){
+function answerQuestion({ authedUser, qid, answer}){
     return {
         type: ANSWER_QUESTION,
-        info
+        authedUser,
+        qid,
+        answer
     }
 }
 
-export function handleAnswerQuestion(qid, answer) {
-    return (dispatch, getState) => {
-        const { authedUser } = getState()
+export function handleAnswerQuestion(info) {
+    return (dispatch) => {
 
         dispatch(showLoading())
-        return saveQuestionAnswer({ authedUser, qid, answer })
+        return saveQuestionAnswer(info)
         .then((result) => dispatch(answerQuestion(result)))
-        .then(() => hideLoading())
+        .then(() => dispatch(hideLoading()))
     }
 }
 
