@@ -22,6 +22,12 @@ class QuestionStats extends Component {
                         {title: `${optionOne.name}`, value: optionOne.numVotes, color: '#009999'},
                         {title: `${optionTwo.name}`, value: optionTwo.numVotes, color: '#cc0066'}
                     ]}
+                    style={{ height: '100px' }}
+                    label = {({ dataEntry }) => dataEntry.value}
+                    labelStyle = {{
+                        fontSize: '5px',
+                        fontFamily: 'sans-serif'
+                    }}
                 />
            </div> 
         )
