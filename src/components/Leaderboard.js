@@ -49,3 +49,5 @@ function mapStateToProps({ users }) {
         userStats: stats.sort((a, b) => stats[a].numAnswered - stats[b.numAnswered])
     }
 }
+
+export default connect(mapStateToProps)(LeaderBoard)
