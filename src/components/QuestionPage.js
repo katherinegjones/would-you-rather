@@ -43,7 +43,7 @@ class QuestionPage extends Component {
             <div className='unanswered-question-main'>
                 <div className='unanswered-question-header'>
                     <h1>Would You Rather . . . </h1>
-                    <ImHome3 className='align-right'/>
+                    <ImHome3 className='home-icon'/>
                 </div>
                 <div className='unanswered-sub-container'>
                     <div className='answer-option' onClick={this.handleSelect}>
