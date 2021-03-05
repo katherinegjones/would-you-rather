@@ -9,7 +9,7 @@ class Nav extends Component {
             <ul className='nav-bar'>
                 <li>LeaderBoard</li>
                 <li>
-                    <FaPlusCircle />
+                    <span><FaPlusCircle /></span>
                     Add New Question
                 </li>
                 <li>Logout</li>

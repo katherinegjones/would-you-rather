@@ -22,8 +22,7 @@ class HomePage extends Component {
     render(){
        const { selected } = this.state
        return (
-           <div className='homepage-main'>
-             <Nav />  
+           <div className='homepage-main'>  
             <div className='answered-or-unanswered'>
                 <div className='homepage-tabs'>
                     <button 

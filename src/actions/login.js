@@ -1,5 +1,3 @@
-import { receiveQuestions } from './questions'
-import { getQuestions } from '../utils/api'
 import { setAuthedUser } from './authUser'
 
 export const LOGIN  = 'LOGIN'
@@ -17,8 +15,6 @@ export function handleLogin(id) {
         dispatch(setAuthedUser(id))
         .then((authedUser) => {
             dispatch(login(authedUser))
-            dispatch(getQuestions())
         })
-        .then((questions) => dispatch(receiveQuestions(questions)))
     }
 }

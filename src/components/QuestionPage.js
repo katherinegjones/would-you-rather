@@ -31,7 +31,7 @@ class QuestionPage extends Component {
             toHome: true
         }))
     }
-    
+
     render() {
         const { selected, toHome } = this.state
         const { optionOne, optionTwo, author, picture } = this.props
@@ -73,8 +73,8 @@ function mapStateToProps({ authedUser, questions, users }, props) {
 
     return {
         qid: curQuestion.id,
-        optionOne: curQuestion.optionOne,
-        optionTwo: curQuestion.optionTwo,
+        optionOne: curQuestion.optionOne.text,
+        optionTwo: curQuestion.optionTwo.text,
         author: curQuestion.author,
         picture: avatar,
         authed: authedUser
