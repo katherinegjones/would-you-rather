@@ -25,7 +25,7 @@ class Login extends Component {
     render(){
         const { users, authedUser } = this.props
 
-        const { from } = this.props.location.state || {from: {pathname: '/'}}
+        const { from } = this.props.location.state || {from: {pathname: '/homepage'}}
 
         if (authedUser){
             <Redirect to={from} />

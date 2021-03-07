@@ -37,8 +37,9 @@ class QuestionPage extends Component {
         const { optionOne, optionTwo, author, picture } = this.props
 
         if (toHome === true){
-            return <Redirect to = '/' />
+            return <Redirect to = '/homepage' />
         }
+
         return(
             <div className='unanswered-question-main'>
                 <div className='unanswered-question-header'>
@@ -56,7 +57,7 @@ class QuestionPage extends Component {
                     </div>
                     <h3>Question by {author}</h3>
                     <img className='avatar' src={picture} alt='avatar of author'></img>
-                    <button disabled={selected === ''} ></button>
+                    <button disabled={selected === ''} onClick={this.handleSubmit}></button>
                 </div>
                 
             </div>

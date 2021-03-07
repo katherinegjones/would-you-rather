@@ -1,5 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 class QuestionPreview extends Component {
     handleOnClick = (e, id) => {
@@ -11,20 +12,26 @@ class QuestionPreview extends Component {
     render(){
         const { author, questionNum, id  }  = this.props
         return(
-            <div className='question-preview-container'>
-                <button className='question-preview-button' onClick={(e) => this.handleOnClick(e, id)}>
-                    Question number {questionNum} by {author}
-                </button>
-                 
-            </div>
+            <Link to={`/question/${id}`}>
+                <div className='question-preview-container'>
+                    <button className='question-preview-button' onClick={(e) => this.handleOnClick(e, id)}>
+                        Question number {questionNum} by {author}
+                    </button>
+                    
+                </div>
+            </Link>
         )
     }
 }
 
 function mapStateToProps({ questions }, { id }){
     const questionNum = questions.indexOf(id)
+    const author = questions[id].author
     
-    return questionNum
+    return {
+        questionNum,
+        author
+    }
 
 
 }
