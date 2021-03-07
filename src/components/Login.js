@@ -4,6 +4,17 @@ import { handleLogin } from '../actions/login'
 import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
+    state = {
+        selected: ''
+    }
+
+    handleChange = (e) => {
+        e.preventDefault()
+
+        this.setState({
+            selected: e.target.value
+        })
+    }
     handleSelect = (e) => {
         e.preventDefault()
 
@@ -12,11 +23,11 @@ class Login extends Component {
         dispatch(handleLogin(e.target.value))
     }
     render(){
-        const { usernames, authed } = this.props
+        const { users, authedUser } = this.props
 
         const { from } = this.props.location.state || {from: {pathname: '/'}}
 
-        if (authed === true){
+        if (authedUser){
             <Redirect to={from} />
         }
 
@@ -24,27 +35,23 @@ class Login extends Component {
             <div class='login-main'>
                 {this.props.location.state && (<p>You must login first to view this page.</p>)}
                 <h1> Select a user to login as</h1>
-                <select value='Login' onChange={this.handleSelect}>
+                <select value='Login' onChange={this.handleChange}>
                     <option value="login" disabled>Select User</option>
-                    {usernames.map((username)=> (
+                    {users.map((username)=> (
                         <option value={`${username.uid}`}>{username.name}</option>  
                     ))}
                 </select>
+                <button disabled={this.state.selected === ''} onClick={this.handleSelect}>Login</button>
             </div>
         )
     }
 }
 
 function mapStateToProps({ users, authedUser }) {
-    const names = users.map((user) => {
-        return {
-            name: user.name,
-            uid: user.id
-        }
-    })
+    
     return {
-        usernames: names,
-        authed: authedUser !== null 
+        users,
+        authedUser 
     }
 }
 
