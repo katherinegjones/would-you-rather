@@ -1,6 +1,7 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleLogin } from '../actions/login'
+import { Redirect } from 'react-router-dom'
 
 class Login extends Component {
     handleSelect = (e) => {
@@ -11,9 +12,17 @@ class Login extends Component {
         dispatch(handleLogin(e.target.value))
     }
     render(){
-        const { usernames } = this.props
+        const { usernames, authed } = this.props
+
+        const { from } = this.props.location.state || {from: {pathname: '/'}}
+
+        if (authed === true){
+            <Redirect to={from} />
+        }
+
         return(
             <div class='login-main'>
+                {this.props.location.state && (<p>You must login first to view this page.</p>)}
                 <h1> Select a user to login as</h1>
                 <select value='Login' onChange={this.handleSelect}>
                     <option value="login" disabled>Select User</option>
@@ -26,7 +35,7 @@ class Login extends Component {
     }
 }
 
-function mapStateToProps({ users }) {
+function mapStateToProps({ users, authedUser }) {
     const names = users.map((user) => {
         return {
             name: user.name,
@@ -34,7 +43,8 @@ function mapStateToProps({ users }) {
         }
     })
     return {
-        usernames: names
+        usernames: names,
+        authed: authedUser !== null 
     }
 }
 
