@@ -4,8 +4,11 @@ import QuestionPreview from './QuestionPreview'
 
 class Unanswered extends Component {
     render() {
+        const divStyle = {
+            display: this.props.display
+        }
         return(
-            <div className='unanswered-questions-container'>
+            <div className='unanswered-questions-container' style={divStyle}>
                 <h1> Unanswered Questions (click to answer): </h1>
                 <ul className='unanswered-questions-list'>
                     {this.props.unansweredIDs.map((id) =>(
@@ -19,10 +22,10 @@ class Unanswered extends Component {
     }
 }
 
-function mapStateToProps ({ questions, authedUser }) {
+function mapStateToProps ({ questions, authedUser, users }) {
     const questionIDs = Object.keys(questions)
-    const userQuestions = authedUser.questions
-    const unanswered = questionIDs.filter((elem) => userQuestions.indexOf(elem) === -1);
+    const userAnswers = Object.keys(users[authedUser].answers)
+    const unanswered = questionIDs.filter((elem) => userAnswers.indexOf(elem) === -1);
     return {
         unansweredIDs: unanswered 
     }

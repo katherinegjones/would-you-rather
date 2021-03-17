@@ -1,7 +1,8 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { handleLogin } from '../actions/login'
+import { setAuthedUser } from '../actions/authUser'
 import { Redirect } from 'react-router-dom'
+import { showLoading, hideLoading } from 'react-redux-loading'
 
 class Login extends Component {
     state = {
@@ -10,7 +11,6 @@ class Login extends Component {
 
     handleChange = (e) => {
         e.preventDefault()
-
         this.setState({
             selected: e.target.value
         })
@@ -19,26 +19,31 @@ class Login extends Component {
         e.preventDefault()
 
         const { dispatch } = this.props
+        
 
-        dispatch(handleLogin(e.target.value))
+        dispatch(setAuthedUser(this.state.selected))
     }
     render(){
-        const { users, authedUser } = this.props
+        const { authedUser, users } = this.props
+
+        
 
         const { from } = this.props.location.state || {from: {pathname: '/homepage'}}
 
-        if (authedUser){
-            <Redirect to={from} />
+        console.log(this.props.location.state)
+        console.log("Authed user: ", authedUser)
+        if (authedUser !== null){
+            return <Redirect to={from} />
         }
 
         return(
-            <div class='login-main'>
-                {this.props.location.state && (<p>You must login first to view this page.</p>)}
+            <div className='login-main'>
+                {this.props.location.state !== undefined && (<p>You must login first to view {this.props.location.state.from.pathname}</p>)}
                 <h1> Select a user to login as</h1>
-                <select value='Login' onChange={this.handleChange}>
-                    <option value="login" disabled>Select User</option>
-                    {users.map((username)=> (
-                        <option value={`${username.uid}`}>{username.name}</option>  
+                <select name='Login' onChange={this.handleChange} required>
+                    <option value='' disabled selected hidden>Select User</option>
+                    {Object.keys(users).map((key, index)=> (
+                        <option key={index} value={`${users[key].id}`}>{users[key].name}</option>  
                     ))}
                 </select>
                 <button disabled={this.state.selected === ''} onClick={this.handleSelect}>Login</button>

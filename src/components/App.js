@@ -5,44 +5,53 @@ import HomePage from './HomePage'
 import NewQuestion from './NewQuestion'
 import LeaderBoard from './Leaderboard'
 import QuestionPage from './QuestionPage'
-import Nav from './Nav'
-import { handleInitialData } from '../actions/shared'
-import { connect } from "react-redux";
 import Login from "./Login";
+import Nav from './Nav'
+import { handleInitialData } from '../actions/shared.js'
+import { connect } from "react-redux";
+
 
 
 class App extends Component {
     componentDidMount(){
-        if (this.props.loading === true)
         this.props.dispatch(handleInitialData())
+        
     }
 
     
     render() {
         const { authedUser } = this.props
-        const PrivateRoute = ({component: Component, ...rest}) =>{
+        // console.log("Authed user: ", authedUser)
+        const PrivateRoute = ({component: Component, ...rest}) => (
             <Route {...rest} render={(props) =>(
-                authedUser 
+                authedUser !== null 
                 ? <Component {...props}/>
                 : <Redirect to={{
-                    pathname: "/login",
+                    pathname: "/",
                     state: {from: props.location}                    
                 }}/>
             )}/>
-        }
+        )
         
+        const NoMatch = ({ location }) => (
+            <h3>No match for <code>{location.pathname}</code></h3>
+        )
+
         return(
             <Router>
                 <Fragment>
                     <LoadingBar />
                     <Nav />
-                    <Switch>
+                    {this.props.loading === true 
+                    ? null
+                    :<Switch>
                         <Route exact path='/' component={Login} />
-                        <PrivateRoute exact path = '/homepage' component={HomePage} />
-                        <PrivateRoute exact path='question/:id' component={QuestionPage} />
+                        <PrivateRoute exact path='/homepage' component={HomePage} />
+                        <PrivateRoute exact path='/question/:id' component={QuestionPage} />
                         <PrivateRoute exact path='/add' component={NewQuestion} />
                         <PrivateRoute exact path='/leaderboard' component={LeaderBoard}/>
-                    </Switch>
+                        <PrivateRoute component={NoMatch} />
+                    </Switch>}
                 </Fragment>
             </Router>
         )
@@ -51,7 +60,7 @@ class App extends Component {
 
 function mapStateToProps({ users, authedUser }){
     return{
-        loading: users.length === 0,
+        loading: Object.keys(users).length === 0,
         authedUser
     }
 }

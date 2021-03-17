@@ -1,6 +1,5 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { ImHome3 } from 'react-icons/im'
 import { handleAnswerQuestion } from '../actions/questions'
 import { Redirect } from 'react-router-dom'
 
@@ -10,9 +9,9 @@ class QuestionPage extends Component {
         toHome: false
     }
 
-    handleSelect = (e) => {
+    handleSelect = (e, option) => {
         if(e.target.tagName === 'H2'){
-            const selected = e.target.innerHTML
+            const selected = option
 
             this.setState(() => ({
                 selected
@@ -21,10 +20,11 @@ class QuestionPage extends Component {
     }
 
     handleSubmit = (e) => {
-        const { dispatch, authed, qid } = this.props
+        const { dispatch, authedUser, qid } = this.props
 
-        const selected = this.state
-        dispatch(handleAnswerQuestion({ authed, qid, selected}))
+        const { selected } = this.state
+        console.log("Option chosen: ", selected)
+        dispatch(handleAnswerQuestion({ authedUser, qid: qid, answer: selected}))
 
         this.setState(() => ({
             selected: '',
@@ -42,23 +42,19 @@ class QuestionPage extends Component {
 
         return(
             <div className='unanswered-question-main'>
-                <div className='unanswered-question-header'>
                     <h1>Would You Rather . . . </h1>
-                    <ImHome3 className='home-icon'/>
-                </div>
-                <div className='unanswered-sub-container'>
-                    <div className='answer-option' onClick={this.handleSelect}>
+                    <div className='answer-option' onClick={(event) => this.handleSelect(event, 'optionOne')}>
                         <h2>{optionOne}</h2>
                     </div>
                     
                     <p>or</p>
-                    <div className='answer-option' onClick={this.handleSelect}>
+                    <div className='answer-option' onClick={(event) => this.handleSelect(event, 'optionTwo')}>
                         <h2>{optionTwo}</h2>
                     </div>
                     <h3>Question by {author}</h3>
                     <img className='avatar' src={picture} alt='avatar of author'></img>
-                    <button disabled={selected === ''} onClick={this.handleSubmit}></button>
-                </div>
+                    <button disabled={selected === ''} onClick={this.handleSubmit}>Submit Answer</button>
+                    
                 
             </div>
         ) 
@@ -70,7 +66,9 @@ function mapStateToProps({ authedUser, questions, users }, props) {
 
     const curQuestion = questions[id]
 
-    const avatar = users.find(elem => elem.id === curQuestion.author).avatar
+    const curAuthor = Object.keys(users).find(elem => elem === curQuestion.author)
+
+    const avatar = users[curAuthor].avatarURL
 
     return {
         qid: curQuestion.id,
@@ -78,7 +76,7 @@ function mapStateToProps({ authedUser, questions, users }, props) {
         optionTwo: curQuestion.optionTwo.text,
         author: curQuestion.author,
         picture: avatar,
-        authed: authedUser
+        authedUser
     }
 }
 

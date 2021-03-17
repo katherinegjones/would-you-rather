@@ -1,26 +1,28 @@
-import { showLoading, hideLoading } from 'react-redux-loading'
 
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const ADD_USER = 'ADD_USER'
+export const ADD_ANSWER = 'ADD_ANSWER'
 
-function receiveUsers(users) {
+export function receiveUsers(users) {
     return {
         type: RECEIVE_USERS,
         users,
     }
 }
 
-export function handleReceiveUsers(users) {
-    return (dispatch) => {
-        dispatch(showLoading())
-        .then(() => dispatch(receiveUsers(users)))
-        .then(() => dispatch(hideLoading()))
-    }
-}
 
 export function addUser(user) {
     return {
         type: ADD_USER,
         user,
+    }
+}
+
+export function addUserAnswer({authedUser, qid, answer }){
+    return {
+        type: ADD_ANSWER,
+        authedUser,
+        qid,
+        answer
     }
 }

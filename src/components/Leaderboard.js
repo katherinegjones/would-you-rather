@@ -9,11 +9,9 @@ class LeaderBoard extends Component {
         const { userStats } = this.props
         return(
             <div className='leaderboard-main'>
-                <div className='leaderboard-header'>
-                    <h1>Leaderboard</h1>    
-                        <ImHome3 className='home-icon'/>
-                </div>
+        
                 <div className='user-stats-container'>
+                    <h1> Leaderboard </h1>
                     <ul className='user-stats-list'>
                         {userStats.map((user, index) => (
                             <li className='user-stats-item'>
@@ -24,8 +22,8 @@ class LeaderBoard extends Component {
                                     : null
                                     }
                                     user={user.username}
-                                    numQuestions={userStats.numAsked}
-                                    numAnswers={userStats.numAnswered}
+                                    numQuestions={user.numAsked}
+                                    numAnswers={user.numAnswered}
                                 />
                             </li>
                         ))}
@@ -37,16 +35,16 @@ class LeaderBoard extends Component {
 }
 
 function mapStateToProps({ users }) {
-    const stats = users.map((user) => {
+    const stats = Object.keys(users).map((user) => {
         return {
-            username: user.name,
-            numAnswered: Object.entries(user.answers).length,
-            numAsked: users.questions.length
+            username: users[user].name,
+            numAnswered: Object.entries(users[user].answers).length,
+            numAsked: users[user].questions.length
         }
     })
 
     return {
-        userStats: stats.sort((a, b) => stats[a].numAnswered - stats[b.numAnswered])
+        userStats: stats.sort((a, b) => b.numAnswered - a.numAnswered)
     }
 }
 

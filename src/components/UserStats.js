@@ -3,13 +3,14 @@ import { connect } from 'react-redux'
 
 class UserStats extends Component {
     render() {
-        const { place, username, numQuestions, numAnswers } = this.props
+        const { place, user, numQuestions, numAnswers } = this.props
         return(
             <div className='user-stats-container' id={place}>
-                {place && (
+                <p className='user-stats-text'>
+                {place !== null && (
                     <span>{place} place: </span>
                 )}
-                <p className='user-stats-text'>{username} | # Questions asked: {numQuestions} | # Questions Answered: {numAnswers}</p>
+                {user} | # Questions asked: {numQuestions} | # Questions Answered: {numAnswers}</p>
             </div>
         )
     }

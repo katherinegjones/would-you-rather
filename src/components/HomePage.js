@@ -11,8 +11,9 @@ class HomePage extends Component {
     }
     handleSelected = (e) => {
         e.preventDefault()
+        console.log(e.target.innerHTML.split(' ')[0])
 
-        const selected = e.target.innerHTML.split(' ')[0].toLower()
+        const selected = e.target.innerHTML.split(' ')[0].toLowerCase()
 
         this.setState(() =>({
             selected

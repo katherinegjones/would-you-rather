@@ -1,15 +1,18 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionStats from './QuestionStats'
-import { ImCheckMark } from 'react-icons/im'
+import { ImCheckmark } from 'react-icons/im'
 
 class Answered extends Component {
     render(){
         const { questionStats } = this.props
+        const divStyle = {
+            display: this.props.display
+        }
         return(
-            <div className='answered-questions-main'>
+            <div className='answered-questions-main' style={divStyle}>
                 <div className='checkmark-explanation'>
-                    <ImCheckMark />
+                    <ImCheckmark />
                     <h3>= Your chosen answer</h3>
                 </div>
                 <div className='answered-question-container'>
@@ -32,14 +35,14 @@ class Answered extends Component {
     }
 }
 
-function mapStateToProps({questions, authedUser }){
-    const answered = Object.keys(authedUser.answers)
+function mapStateToProps({questions, authedUser, users }){
+    const answered = Object.keys(users[authedUser].answers)
 
     const stats = answered.map((item) => {
         return {
             optionOne: questions[item].optionOne,
             optionTwo: questions[item].optionTwo,
-            selected: authedUser.answers[item] === "optionOne" 
+            selected: users[authedUser].answers[item] === "optionOne" 
             ? questions[item].optionOne.text
             : questions[item].optionTwo.text  
         }

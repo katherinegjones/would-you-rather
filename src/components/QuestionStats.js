@@ -1,6 +1,6 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
-import { ImCheckMark } from 'react-icons/im'
+import { ImCheckmark } from 'react-icons/im'
 import { PieChart } from 'react-minimal-pie-chart'
 
 class QuestionStats extends Component {
@@ -11,16 +11,16 @@ class QuestionStats extends Component {
                <h2>Question {num}: </h2>
                     <div className='option-one-stats-container'>
                             {optionOne === selected && (
-                                <ImCheckMark className='checkmark'/>
+                                <ImCheckmark className='checkmark'/>
                             )}
-                        <h3 className='option-one-stats'>{optionOne}: {numOneVotes}"</h3>
+                        <h3 className='option-one-stats'>{optionOne}: {numOneVotes} {numOneVotes === 1 ? "vote" : "votes"}</h3>
                     </div>
 
                     <div className='option-two-stats-container'>
                             {optionTwo === selected && (
-                                <ImCheckMark className='checkmark'/>
+                                <ImCheckmark className='checkmark'/>
                             )}
-                        <h3 className='option-two-stats'>{optionTwo}: {numTwoVotes}"</h3>
+                        <h3 className='option-two-stats'>{optionTwo}: {numTwoVotes} {numTwoVotes === 1 ? "vote" : "votes"}</h3>
                     </div>
                 
                 <PieChart 
@@ -31,7 +31,7 @@ class QuestionStats extends Component {
                     style={{ height: '100px' }}
                     label = {({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
                     labelStyle = {{
-                        fontSize: '5px',
+                        fontSize: '15px',
                         fontFamily: 'sans-serif'
                     }}
                 />

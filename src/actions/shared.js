@@ -1,9 +1,9 @@
-import { getInitialData } from '../utils/api'
+import { getInitialData } from '../utils/api.js'
 import { receiveQuestions } from './questions'
 import { receiveUsers } from './users'
 import { showLoading, hideLoading } from 'react-redux-loading'
 
-export default function handleInitialData() {
+export function handleInitialData() {
     return (dispatch) => {
         dispatch(showLoading)
         return getInitialData()
