@@ -1,3 +1,5 @@
+import johnDoe from '../images/john_doe.png'
+
 let users = {
   sarahedo: {
     id: 'sarahedo',
@@ -24,7 +26,7 @@ let users = {
   johndoe: {
     id: 'johndoe',
     name: 'John Doe',
-    avatarURL: "../images/john_doe.png",
+    avatarURL: johnDoe,
     answers: {
       "xj352vofupe1dqz9emx13r": 'optionOne',
       "vthrdm985a262al8qx3do": 'optionTwo',
@@ -147,6 +149,31 @@ function formatQuestion ({ optionOneText, optionTwoText, author }) {
   }
 }
 
+function formatUser (user) {
+
+  return {
+    id: user.id,
+    name: user.name,
+    avatarURL: user.avatarURL,
+    answers: {},
+    questions: []
+  }
+}
+
+export function _saveUser (user) {
+  return new Promise((res, rej) => {
+  const formattedUser = formatUser(user)
+
+  setTimeout(() => {
+    users = {
+      ...users,
+      [formattedUser.id]: formattedUser
+    }
+    res(formattedUser)
+  }, 1000)
+})
+}
+
 export function _saveQuestion (question) {
   return new Promise((res, rej) => {
     const authedUser = question.author;
@@ -185,6 +212,7 @@ export function _saveQuestionAnswer ({ authedUser, qid, answer }) {
         }
       }
 
+      
       questions = {
         ...questions,
         [qid]: {

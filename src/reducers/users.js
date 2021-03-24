@@ -9,10 +9,16 @@ export default function(state = {}, action){
                 ...action.users
             }
         case ADD_USER:
+            const { user } = action
             return {
                 ...state,
-                [action.user.id]: action.user
+                [user.id]: {
+                    ...user,
+                    answers: {},
+                    questions: []
+                }
             }
+
         case ADD_ANSWER:
             return {
                 ...state,

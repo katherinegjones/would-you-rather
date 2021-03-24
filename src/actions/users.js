@@ -1,3 +1,4 @@
+import { saveUser } from "../utils/api"
 
 export const RECEIVE_USERS = 'RECEIVE_USERS'
 export const ADD_USER = 'ADD_USER'
@@ -11,13 +12,19 @@ export function receiveUsers(users) {
 }
 
 
-export function addUser(user) {
+function addUser(user) {
     return {
         type: ADD_USER,
         user,
     }
 }
 
+export function handleAddUser(user){
+    return(dispatch) => {
+    return saveUser(user)
+    .then(() => dispatch(addUser(user)))
+}
+}
 export function addUserAnswer({authedUser, qid, answer }){
     return {
         type: ADD_ANSWER,
