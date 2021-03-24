@@ -2,6 +2,8 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import { handleAnswerQuestion } from '../actions/questions'
 import { Redirect } from 'react-router-dom'
+import '../stylesheets/questionpage.css'
+import '../stylesheets/index.css'
 
 class QuestionPage extends Component {
     state = {
@@ -24,6 +26,7 @@ class QuestionPage extends Component {
 
         const { selected } = this.state
         console.log("Option chosen: ", selected)
+        console.log("Authed user upon answering question: ", authedUser)
         dispatch(handleAnswerQuestion({ authedUser, qid: qid, answer: selected}))
 
         this.setState(() => ({
@@ -40,20 +43,37 @@ class QuestionPage extends Component {
             return <Redirect to = '/homepage' />
         }
 
+        const selectedStyle = {
+            backgroundColor: '#cc0066',
+            color: 'white',
+            boxShadow: 'none'
+        }
+
+        const unStyle = {
+            color: '#cc0066',
+            boxShadow: '0px 0px 4px #cc0066'
+        }
+
         return(
-            <div className='unanswered-question-main'>
+            <div className='main'>
                     <h1>Would You Rather . . . </h1>
-                    <div className='answer-option' onClick={(event) => this.handleSelect(event, 'optionOne')}>
+                    <div className='answer-option' style={selected === 'optionOne' ? selectedStyle : unStyle} onClick={(event) => this.handleSelect(event, 'optionOne')}>
                         <h2>{optionOne}</h2>
                     </div>
                     
-                    <p>or</p>
-                    <div className='answer-option' onClick={(event) => this.handleSelect(event, 'optionTwo')}>
+                    <h3>or</h3>
+                    <div className='answer-option' style={selected === 'optionTwo' ? selectedStyle : unStyle} onClick={(event) => this.handleSelect(event, 'optionTwo')}>
                         <h2>{optionTwo}</h2>
                     </div>
                     <h3>Question by {author}</h3>
                     <img className='avatar' src={picture} alt='avatar of author'></img>
-                    <button disabled={selected === ''} onClick={this.handleSubmit}>Submit Answer</button>
+                    <button
+                    className='submit-button' 
+                    disabled={selected === ''} 
+                    onClick={this.handleSubmit}>
+                        <strong>Submit Answer</strong>
+                        
+                    </button>
                     
                 
             </div>

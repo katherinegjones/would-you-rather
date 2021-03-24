@@ -1,0 +1,50 @@
+
+
+.leaderboard-main h1{
+    text-decoration-line: underline;
+    color: #006666;
+    text-shadow: 2px 2px 4px #33cccc;
+}
+
+.leaderboard-main h1 > span {
+    padding: 10px;
+}
+.user-stats-list {
+    list-style-type: none;
+    margin-top: 1rem;
+}
+
+.user-stats-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    margin: 1rem;
+    border: 1px solid gray;
+    border-radius: 10px;
+    font-size: x-large;
+}
+
+#first {
+    color: #0033cc;
+    box-shadow: 0px 0px 10px #0033cc inset;
+}
+
+#second {
+    color: #6600ff;
+    box-shadow: 0px 0px 10px #6600ff inset;
+}
+
+#third {
+    color: #9900cc;
+    box-shadow: 0px 0px 10px #9900cc inset;
+}
+
+#fourth {
+    color: #cc0099;
+    box-shadow: 0px 0px 10px #cc0099 inset;
+}
+
+#fifth {
+    color: #ff0066;
+    box-shadow: 0px 0px 10px #ff0066 inset;
+}

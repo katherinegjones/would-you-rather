@@ -1,0 +1,37 @@
+.answered-questions-main {
+    margin-top: 3rem;
+    text-align: center;
+}
+
+.checkmark-explanation {
+    text-shadow: 1px 1px 1px grey;
+    width: 450px;
+    margin: auto;
+    border-bottom: 4px solid #66ff33;
+    padding-bottom: 5px;
+}
+
+
+
+.unanswered-questions-container h2 {
+    margin: 2rem;
+    color: #cc0066;
+}
+
+.unanswered-questions-list {
+    list-style-type: none;
+}
+
+.question-preview-container {
+    color: #009999;
+    margin: 2rem;
+    padding: 10px;
+    border: 2px solid #004d4d;
+    border-radius: 10px;
+    box-shadow: 0px 0px 5px #004d4d inset, 2px 2px 8px #ffcc99;
+}
+
+.question-preview-container:hover {
+    color: white;
+    background-color: #009999;
+}

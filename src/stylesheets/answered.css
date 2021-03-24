@@ -1,0 +1,39 @@
+.checkmark {
+    color: #66ff33;
+    height: 30px;
+    width: auto;
+    padding-right: 5px;
+}
+
+.option-one-stats {
+    color: #009999;
+   
+}
+
+.option-two-stats {
+    color: #cc0066;
+    
+}
+
+.option-stats-container {
+    width: 580px;
+    text-align: center;
+    padding: 5px;
+}
+.question-stats-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 5rem;
+    margin-left: auto;
+    margin-right: auto;
+    width: 600px;
+    padding: 20px;
+    color: #663300;
+    background-color: cornsilk;
+    border: 1px solid bisque;
+    border-radius: 20px;
+    box-shadow: 5px 5px 10px grey, 0px 0px 20px bisque inset;
+
+}

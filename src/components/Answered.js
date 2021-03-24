@@ -2,6 +2,8 @@ import { Component } from 'react'
 import { connect } from 'react-redux'
 import QuestionStats from './QuestionStats'
 import { ImCheckmark } from 'react-icons/im'
+import '../stylesheets/answered.css'
+import '../stylesheets/homepage.css'
 
 class Answered extends Component {
     render(){
@@ -12,13 +14,13 @@ class Answered extends Component {
         return(
             <div className='answered-questions-main' style={divStyle}>
                 <div className='checkmark-explanation'>
-                    <ImCheckmark />
-                    <h3>= Your chosen answer</h3>
+                    
+                    <h1><span><ImCheckmark className='checkmark'/></span>= Your chosen answer</h1>
                 </div>
                 <div className='answered-question-container'>
                     {questionStats.map((item, index) =>(
-                        <div>
-                            <QuestionStats 
+                            <QuestionStats
+                                key={index}
                                 id={index}
                                 num = {index + 1}
                                 optionOne={item.optionOne.text}
@@ -26,8 +28,7 @@ class Answered extends Component {
                                 optionTwo={item.optionTwo.text}
                                 numTwoVotes={item.optionTwo.votes.length}
                                 selected={item.selected}
-                            />
-                        </div>    
+                            />    
                     ))}
                 </div>
             </div>

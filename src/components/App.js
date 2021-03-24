@@ -9,6 +9,8 @@ import Login from "./Login";
 import Nav from './Nav'
 import { handleInitialData } from '../actions/shared.js'
 import { connect } from "react-redux";
+import 'bootstrap/dist/css/bootstrap.min.css';
+import NewUser from "./NewUser";
 
 
 
@@ -46,10 +48,12 @@ class App extends Component {
                     ? null
                     :<Switch>
                         <Route exact path='/' component={Login} />
+                        <Route exact path='/new' component={NewUser} />
                         <PrivateRoute exact path='/homepage' component={HomePage} />
                         <PrivateRoute exact path='/question/:id' component={QuestionPage} />
                         <PrivateRoute exact path='/add' component={NewQuestion} />
                         <PrivateRoute exact path='/leaderboard' component={LeaderBoard}/>
+                        
                         <PrivateRoute component={NoMatch} />
                     </Switch>}
                 </Fragment>

@@ -1,17 +1,17 @@
 import { Component } from 'react'
 import { connect } from 'react-redux'
 import UserStats from './UserStats'
-import { ImHome3 } from 'react-icons/im'
+import '../stylesheets/leaderboard.css'
+import '../stylesheets/index.css'
+import { FaMedal } from 'react-icons/fa'
 
 class LeaderBoard extends Component {
     render() {
         const places = ["first", "second", "third", "fourth", "fifth"]
         const { userStats } = this.props
         return(
-            <div className='leaderboard-main'>
-        
-                <div className='user-stats-container'>
-                    <h1> Leaderboard </h1>
+            <div className='main leaderboard-main'>
+                    <h1><span><FaMedal /></span> Leaderboard<span><FaMedal /></span> </h1>
                     <ul className='user-stats-list'>
                         {userStats.map((user, index) => (
                             <li className='user-stats-item'>
@@ -28,7 +28,6 @@ class LeaderBoard extends Component {
                             </li>
                         ))}
                     </ul>
-                </div>
             </div>
         )
     }
