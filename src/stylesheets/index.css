@@ -24,6 +24,11 @@
     box-shadow: 0px 0px 2px #004d4d inset;
 }
 
+.submit-button:enabled:hover {
+    background-color: #009999;
+    color: white
+}
+
 ul{
     list-style-type: none;
 }

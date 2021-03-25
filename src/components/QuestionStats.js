@@ -32,8 +32,7 @@ class QuestionStats extends Component {
                     style={{ height: '125px' }}
                     label = {({ dataEntry }) => Math.round(dataEntry.percentage) + '%'}
                     labelStyle = {(index) => ({
-                        fill: 'white',
-                        textShadow: `-2px 0 ${dataMock[index].color}, 0 2px ${dataMock[index].color}, 2px 0 ${dataMock[index].color}, 0 -2px ${dataMock[index].color}`,
+                        fill: dataMock[index].value === 0 ? dataMock[index].color : 'white',
                         fontSize: '20px',
                         fontFamily: 'sans-serif'
                     })}

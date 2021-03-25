@@ -17,7 +17,7 @@ class Answered extends Component {
                     
                     <h1><span><ImCheckmark className='checkmark'/></span>= Your chosen answer</h1>
                 </div>
-                <div className='answered-question-container'>
+                <div className='answered-questions-container'>
                     {questionStats.map((item, index) =>(
                             <QuestionStats
                                 key={index}
