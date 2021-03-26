@@ -15,16 +15,16 @@ class QuestionStats extends Component {
                <h2>Question {num}: </h2>
                     <div className='option-stats-container'>
                             
-                        <h3 className='option-one-stats'><span>{optionOne === selected && (
+                        <p className='option-one-stats'><span>{optionOne === selected && (
                                 <ImCheckmark className='checkmark'/>
-                            )}</span>{optionOne}: {numOneVotes} {numOneVotes === 1 ? "vote" : "votes"}</h3>
+                            )}</span><strong>{optionOne}: {numOneVotes} {numOneVotes === 1 ? "vote" : "votes"}</strong></p>
                     </div>
 
                     <div className='option-stats-container'>
                             
-                        <h3 className='option-two-stats'><span>{optionTwo === selected && (
+                        <p className='option-two-stats'><span>{optionTwo === selected && (
                                 <ImCheckmark className='checkmark'/>
-                            )}</span>{optionTwo}: {numTwoVotes} {numTwoVotes === 1 ? "vote" : "votes"}</h3>
+                            )}</span><strong>{optionTwo}: {numTwoVotes} {numTwoVotes === 1 ? "vote" : "votes"}</strong></p>
                     </div>
                 
                 <PieChart 

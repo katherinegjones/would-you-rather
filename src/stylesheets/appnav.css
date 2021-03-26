@@ -21,16 +21,30 @@ div {
 
 .right-justify > p {
     display: none
-}
-/*
-.right-justify {
-    position: absolute;
-    right: 10px
+
 }
 
+.right-justify > button  {
+        background-color: #009999;
+        margin-left:  10px;
+        font-size: large;
+    }
+
+@media (min-width: 768px) {
+    
+    .right-justify {
+        position: absolute;
+        right: 10px
+    }
+
+    .right-justify > p {
+        display: inline;
+        position: relative;
+        top: 10px;
+    }
 
 
-.logout-button {
-    background-color: #009999;
-    margin-left:  10px
-}*/
+
+
+    
+}

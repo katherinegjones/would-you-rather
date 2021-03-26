@@ -53,3 +53,13 @@
     color: #ff0066;
     box-shadow: 0px 0px 10px #ff0066 inset;
 }
+
+@media (min-width: 768px) {
+    .user-stats-container {
+        flex-direction: row;
+    }
+
+    .separator {
+        display: inline;
+    }
+}

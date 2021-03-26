@@ -14,9 +14,8 @@ class LeaderBoard extends Component {
                     <h1><span><FaMedal /></span> Leaderboard<span><FaMedal /></span> </h1>
                     <ul className='user-stats-list'>
                         {userStats.map((user, index) => (
-                            <li className='user-stats-item'>
-                                <UserStats 
-                                    key={index}
+                            <li key={index} className='user-stats-item'>
+                                <UserStats
                                     place = {index < 5
                                     ? places[index]
                                     : null

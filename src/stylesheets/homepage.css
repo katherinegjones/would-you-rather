@@ -35,3 +35,9 @@
     color: white;
     background-color: #009999;
 }
+
+@media (min-width: 768px) {
+    .checkmark-explanation {
+        width: 550px;
+    }
+}

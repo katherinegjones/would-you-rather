@@ -12,7 +12,11 @@ class UserStats extends Component {
                 {place !== null && (
                     <span>{place.charAt(0).toUpperCase() + place.slice(1)} place: </span>
                 )}
-                {user}</strong></p> <span className='separator'><FaMedal /></span><p><strong> # Questions asked: {numQuestions}</strong></p> <span className='separator'><FaMedal /></span><p><strong> # Questions Answered: {numAnswers}</strong></p>
+                {user}</strong></p> 
+                <span className='separator'>&nbsp; <FaMedal /> &nbsp; </span>
+                <p><strong> # Questions asked: {numQuestions}</strong></p> 
+                <span className='separator'> &nbsp; <FaMedal /> &nbsp; </span>
+                <p><strong> # Questions Answered: {numAnswers}</strong></p>
             </div>
         )
     }

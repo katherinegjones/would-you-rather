@@ -21,7 +21,7 @@ class AppNav extends Component {
         const { users, authedUser } = this.props
         return(
             <div>
-                <NavBar expand='md' bg='dark' variant='dark'>
+                <NavBar sticky='top' expand='md' bg='dark' variant='dark'>
                     <NavBar.Brand>Would You Rather?</NavBar.Brand>
                     <Nav>
                         <Navbar.Toggle />
@@ -58,7 +58,7 @@ class AppNav extends Component {
                     {this.props.loggedIn === true &&(
                         <Nav className='right-justify'>
                             <Navbar.Text as='p' className='welcome'> Welcome, {users[authedUser].name}! </Navbar.Text>
-                            <Button className='logout-button' onClick={this.handleLogout}>Logout</Button>
+                            <Button as='button' className='logout-button' onClick={this.handleLogout}><strong>Logout</strong></Button>
                             
                         </Nav>
                         )}
