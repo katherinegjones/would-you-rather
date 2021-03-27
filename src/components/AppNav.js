@@ -21,7 +21,7 @@ class AppNav extends Component {
         const { users, authedUser } = this.props
         return(
             <div>
-                <NavBar sticky='top' expand='md' bg='dark' variant='dark'>
+                <NavBar expand='md' bg='dark' variant='dark'>
                     <NavBar.Brand>Would You Rather?</NavBar.Brand>
                     <Nav>
                         <Navbar.Toggle />

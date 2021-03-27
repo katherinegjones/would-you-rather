@@ -11,7 +11,7 @@ import { handleInitialData } from '../actions/shared.js'
 import { connect } from "react-redux";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import NewUser from "./NewUser";
-
+import '../stylesheets/index.css'
 
 
 class App extends Component {
@@ -23,7 +23,6 @@ class App extends Component {
     
     render() {
         const { authedUser } = this.props
-        // console.log("Authed user: ", authedUser)
         const PrivateRoute = ({component: Component, ...rest}) => (
             <Route {...rest} render={(props) =>(
                 authedUser !== null 
@@ -39,15 +38,23 @@ class App extends Component {
             <h3>No match for <code>{location.pathname}</code></h3>
         )
 
+        const loadingStyle = {
+            zIndex: '1',
+            height: '10px',
+            background: 'linear-gradient(to right, #0066cc 0%, #00ffff 100%)'
+        }
         return(
             <Router>
                 <Fragment>
-                    <div className='app-main'>
-                    <LoadingBar />
-                        <AppNav />
+                    <div>
+                    <LoadingBar style={loadingStyle}/>
+                    <AppNav />
+                    
+                        
                         {this.props.loading === true 
                         ? null
-                        :<Switch>
+                        :<div className='app-main'>
+                        <Switch>
                             <Route exact path='/' component={Login} />
                             <Route exact path='/new' component={NewUser} />
                             <PrivateRoute exact path='/homepage' component={HomePage} />
@@ -56,7 +63,9 @@ class App extends Component {
                             <PrivateRoute exact path='/leaderboard' component={LeaderBoard}/>
                             
                             <PrivateRoute component={NoMatch} />
-                        </Switch>}
+                        </Switch>
+                        </div>
+                        }
                     </div>
                 </Fragment>
             </Router>

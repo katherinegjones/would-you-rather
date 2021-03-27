@@ -1,7 +1,7 @@
-div {
-    position: relative
-}
 
+div {
+    position: relative;
+}
 .active .active-nav-link{
     background-color: #009999;
     padding: 2px;

@@ -1,3 +1,27 @@
 .new-question-form input{
     width: 300px;
+    color: #006666;
+    border: 1px solid #006666;
+    border-radius: 5px;
 }
+
+h1 {
+    color: #006666
+}
+
+.chars-remaining {
+    position: relative;
+    left: 100px;
+    font-size: small;
+    color: #cc0066;
+}
+@media (min-width: 768px){
+    .new-question-form input{
+        width: 450px;
+    }
+
+    .chars-remaining {
+        left: 175px;
+    }
+}
+
